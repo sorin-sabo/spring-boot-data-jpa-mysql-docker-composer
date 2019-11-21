@@ -1,4 +1,4 @@
-version: '3'
+version: '2'
 
 services:
   mysql-docker-container:
@@ -8,6 +8,8 @@ services:
       - MYSQL_DATABASE=spring_app_db
       - MYSQL_USER=app_user
       - MYSQL_PASSWORD=test123
+    networks:
+      - overlay
     volumes:
       - /data/mysql
   spring-boot-jpa-app:
@@ -21,3 +23,7 @@ services:
       - 8087:8080
     volumes:
       - /data/spring-boot-app
+    networks:
+      - overlay
+networks:
+  overlay:
